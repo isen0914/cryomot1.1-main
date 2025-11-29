@@ -1,11 +1,13 @@
 /* ------------ INSERTED FROM viewer_vtkjs.html (COMPATIBLE VERSION) -------------- */
 /*   This is a simplified & container-safe version of your viewer_vtkjs.html script */
 /* ------------------------------------------------------------------------------- */
-
+// VTK.js imports
 function getQueryParam(name) {
     const params = new URLSearchParams(window.location.search);
     return params.get(name);
 }
+
+
 
 function parseNpy(buffer) {
     const dv = new DataView(buffer);
