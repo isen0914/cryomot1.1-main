@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>MySQL API Test</title>
+	</head>
+	<body>
+		<h1>MySQL API Test</h1>
+		<button id="btnTest">Run Query</button>
+
+		<pre id="output" style="background: #eee; padding: 1em"></pre>
+
+		<script>
+			document.getElementById("btnTest").addEventListener("click", async () => {
+				const apiUrl = "https://mysqldb.justpi.tech/api/sql.php";
+
+				// SQL query to run (you can change this)
+				const sqlQuery = "SHOW TABLES;";
+
+				document.getElementById("output").textContent = "Running query...";
+
+				try {
+					const res = await fetch(apiUrl, {
+						method: "POST",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify({ sql: sqlQuery }),
+					});
+
+					const data = await res.json();
+					document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+				} catch (err) {
+					document.getElementById("output").textContent = "Error: " + err.message;
+				}
+			});
+		</script>
+	</body>
+</html>
